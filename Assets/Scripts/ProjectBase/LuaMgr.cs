@@ -34,15 +34,24 @@ public class LuaMgr : BaseManager<LuaMgr>
     {
         //测试传入的参数是什么
         Debug.Log(filepath);
+        //处理路径
+        string processedPath = filepath;
+        //情况1: 处理Assets.Lua.前缀
+        if (processedPath.StartsWith("Assets.Lua."))
+        {
+            processedPath = processedPath.Substring(10); // 移除"Assets.Lua."前缀
+        }
+        //情况2: 处理可能的点号分隔路径
+        processedPath = processedPath.Replace('.', '/');
         //决定Lua文件所在路径
-        string path = Application.dataPath + "/Lua/" + filepath + ".lua";
+        string path = Application.dataPath + "/Lua/" + processedPath + ".lua";
         //C#自带的文件读取类
         if (File.Exists(path))
         {
             return File.ReadAllBytes(path);
         }
         else
-            Debug.Log("MyCustomLoader重定向失败");
+            Debug.Log("MyCustomLoader重定向失败: " + path);
 
         return null;
     }
