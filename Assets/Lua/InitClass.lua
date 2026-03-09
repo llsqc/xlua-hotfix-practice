@@ -6,7 +6,8 @@ require("Assets.Lua.SplitTools")
 -- 引入JsonUtility
 Json = require("Assets.Lua.JsonUtility")
 
---
+CS = CS
+typeof =typeof
 GameObject = CS.UnityEngine.GameObject
 Component = CS.UnityEngine.Component
 Transform = CS.UnityEngine.Transform
@@ -24,5 +25,7 @@ Text = UI.Text
 Button = UI.Button
 Toggle = UI.Toggle
 ScrollRect = UI.ScrollRect
+
+Canvas = GameObject.Find("Canvas").transform
 
 ABMgr = CS.ABMgr.GetInstance()
